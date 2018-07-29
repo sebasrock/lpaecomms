@@ -38,6 +38,13 @@ public class CacheConfiguration {
             cm.createCache(co.bassan.lpaecomms.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(co.bassan.lpaecomms.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(co.bassan.lpaecomms.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(co.bassan.lpaecomms.domain.Stock.class.getName(), jcacheConfiguration);
+            cm.createCache(co.bassan.lpaecomms.domain.Stock.class.getName() + ".stockIDS", jcacheConfiguration);
+            cm.createCache(co.bassan.lpaecomms.domain.Clients.class.getName(), jcacheConfiguration);
+            cm.createCache(co.bassan.lpaecomms.domain.Clients.class.getName() + ".clientIDS", jcacheConfiguration);
+            cm.createCache(co.bassan.lpaecomms.domain.Invoices.class.getName(), jcacheConfiguration);
+            cm.createCache(co.bassan.lpaecomms.domain.Invoices.class.getName() + ".invNos", jcacheConfiguration);
+            cm.createCache(co.bassan.lpaecomms.domain.InvoiceItems.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }
