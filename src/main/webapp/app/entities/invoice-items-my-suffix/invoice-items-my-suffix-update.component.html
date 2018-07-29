@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-invoice-items-my-suffix-heading" jhiTranslate="lpaecommsApp.invoiceItems.home.createOrEditLabel">Create or edit a Invoice Items</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!invoiceItems.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="invoiceItems.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lpaecommsApp.invoiceItems.invitemNo" for="field_invitemNo">Invitem No</label>
+                    <input type="text" class="form-control" name="invitemNo" id="field_invitemNo"
+                        [(ngModel)]="invoiceItems.invitemNo" required/>
+                    <div [hidden]="!(editForm.controls.invitemNo?.dirty && editForm.controls.invitemNo?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.invitemNo?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lpaecommsApp.invoiceItems.invitemQty" for="field_invitemQty">Invitem Qty</label>
+                    <input type="text" class="form-control" name="invitemQty" id="field_invitemQty"
+                        [(ngModel)]="invoiceItems.invitemQty" required/>
+                    <div [hidden]="!(editForm.controls.invitemQty?.dirty && editForm.controls.invitemQty?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.invitemQty?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lpaecommsApp.invoiceItems.stock" for="field_stock">Stock</label>
+                    <select class="form-control" id="field_stock" name="stock" [(ngModel)]="invoiceItems.stockId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="stockOption.id" *ngFor="let stockOption of stocks; trackBy: trackStockById">{{stockOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lpaecommsApp.invoiceItems.invoices" for="field_invoices">Invoices</label>
+                    <select class="form-control" id="field_invoices" name="invoices" [(ngModel)]="invoiceItems.invoicesId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="invoicesOption.id" *ngFor="let invoicesOption of invoices; trackBy: trackInvoicesById">{{invoicesOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

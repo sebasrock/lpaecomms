@@ -1,0 +1,79 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-invoices-my-suffix-heading" jhiTranslate="lpaecommsApp.invoices.home.createOrEditLabel">Create or edit a Invoices</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!invoices.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="invoices.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lpaecommsApp.invoices.invNo" for="field_invNo">Inv No</label>
+                    <input type="text" class="form-control" name="invNo" id="field_invNo"
+                        [(ngModel)]="invoices.invNo" required/>
+                    <div [hidden]="!(editForm.controls.invNo?.dirty && editForm.controls.invNo?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.invNo?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lpaecommsApp.invoices.invDate" for="field_invDate">Inv Date</label>
+                    <div class="d-flex">
+                        <input id="field_invDate" type="datetime-local" class="form-control" name="invDate" [(ngModel)]="invDate"
+                        required/>
+                    </div>
+                    <div [hidden]="!(editForm.controls.invDate?.dirty && editForm.controls.invDate?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.invDate?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.invDate?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lpaecommsApp.invoices.invAmount" for="field_invAmount">Inv Amount</label>
+                    <input type="number" class="form-control" name="invAmount" id="field_invAmount"
+                        [(ngModel)]="invoices.invAmount" required/>
+                    <div [hidden]="!(editForm.controls.invAmount?.dirty && editForm.controls.invAmount?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.invAmount?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.invAmount?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lpaecommsApp.invoices.invStatus" for="field_invStatus">Inv Status</label>
+                    <input type="checkbox" class="form-control" name="invStatus" id="field_invStatus"
+                        [(ngModel)]="invoices.invStatus" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lpaecommsApp.invoices.clients" for="field_clients">Clients</label>
+                    <select class="form-control" id="field_clients" name="clients" [(ngModel)]="invoices.clientsId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="clientsOption.id" *ngFor="let clientsOption of clients; trackBy: trackClientsById">{{clientsOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

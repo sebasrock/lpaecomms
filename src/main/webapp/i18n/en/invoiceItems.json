@@ -1,0 +1,25 @@
+
+{
+    "lpaecommsApp": {
+        "invoiceItems" : {
+            "home": {
+                "title": "Invoice Items",
+                "createLabel": "Create a new Invoice Items",
+                "createOrEditLabel": "Create or edit a Invoice Items"
+            },
+            "created": "A new Invoice Items is created with identifier {{ param }}",
+            "updated": "A Invoice Items is updated with identifier {{ param }}",
+            "deleted": "A Invoice Items is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Invoice Items {{ id }}?"
+            },
+            "detail": {
+                "title": "Invoice Items"
+            },
+            "invitemNo": "Invitem No",
+            "invitemQty": "Invitem Qty",
+            "stock": "Stock",
+            "invoices": "Invoices"
+        }
+    }
+}
